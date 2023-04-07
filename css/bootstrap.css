@@ -1290,7 +1290,8 @@ pre code {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 16.666667%;
     flex: 0 0 16.666667%;
-    max-width: 16.666667%;
+    /* max-width: 16.666667%; */
+    width: 100%;
   }
   .col-lg-3 {
     -webkit-box-flex: 0;
@@ -7459,7 +7460,7 @@ button.bg-dark:focus {
 
 .mt-2,
 .my-2 {
-  margin-top: 0.5rem !important;
+  width: 90px;
 }
 
 .mr-2,
@@ -7469,7 +7470,7 @@ button.bg-dark:focus {
 
 .mb-2,
 .my-2 {
-  margin-bottom: 0.5rem !important;
+  width: 90px;
 }
 
 .ml-2,

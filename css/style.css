@@ -1437,6 +1437,12 @@ h4.footer-title {
     max-width: 400px;
 }
 
+.list-w3pvtits{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
 .list-w3pvtits li a {
     color: #fff;
     font-size: 1em;
@@ -1462,7 +1468,9 @@ h3.w3f_title {
 .cpy-right a {
     color: #fff;
 }
-
+.wrapStyle{
+    white-space: nowrap;
+}
 /* -- Responsive code -- */
 @media screen and (max-width: 1080px) {
     h3.home-banner-w3 {
