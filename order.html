@@ -106,96 +106,7 @@
           </p> -->
         </div>
         <div>
-          <ul class="demo row">
-            <li class="col-lg-4">
-              <div class="img-grid">
-                <div class="Portfolio-grid1">
-                  <a href="#gal1">
-                    <img src="images/g1.jpg" alt=" " class="img-fluid" />
-                  </a>
-                </div>
-                <div class="port-desc text-center">
-                  <h6 class="main-title-w3pvt text-center">
-                    0-5mm碎石
-                  </h6>
-                  <div class="input-container">
-                    <input type="number" id="tons-input" placeholder="请输入吨数" oninput="calculatePrice()" min="1" step="1">
-                    <span class="price" id="price-output">一吨3000tg</span>
-                    <button onclick="calculatePrice()">下单</button>
-                </div>
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4">
-              <div class="img-grid">
-                <div class="Portfolio-grid1">
-                  <a href="#gal2">
-                    <img src="images/g2.jpg" alt=" " class="img-fluid" />
-                  </a>
-                </div>
-                <div class="port-desc text-center">
-                  <h6 class="main-title-w3pvt text-center">5-10mm碎石</h6>
-                  <div class="input-container">
-                    <input type="number" id="tons-input" placeholder="请输入吨数" oninput="calculatePrice()" min="1" step="1">
-                    <span class="price" id="price-output">一吨3000tg</span>
-                    <button onclick="calculatePrice()">下单</button>
-                </div>
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4">
-              <div class="img-grid">
-                <div class="Portfolio-grid1">
-                  <a href="#gal3">
-                    <img src="images/g3.jpg" alt=" " class="img-fluid" />
-                  </a>
-                </div>
-                <div class="port-desc text-center">
-                  <h6 class="main-title-w3pvt text-center">10-20mm</h6>
-                  <div class="input-container">
-                    <input type="number" id="tons-input" placeholder="请输入吨数" oninput="calculatePrice()" min="1" step="1">
-                    <span class="price" id="price-output">一吨3000tg</span>
-                    <button onclick="calculatePrice()">下单</button>
-                </div>
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4">
-              <div class="img-grid">
-                <div class="Portfolio-grid1">
-                  <a href="#gal4">
-                    <img src="images/g4.jpg" alt=" " class="img-fluid" />
-                  </a>
-                </div>
-                <div class="port-desc text-center">
-                  <h6 class="main-title-w3pvt text-center">20-40mm</h6>
-                  <div class="input-container">
-                    <input type="number" id="tons-input" placeholder="请输入吨数" oninput="calculatePrice()" min="1" step="1">
-                    <span class="price" id="price-output">一吨3000tg</span>
-                    <button onclick="calculatePrice()">下单</button>
-                </div>
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4">
-              <div class="img-grid">
-                <div class="Portfolio-grid1">
-                  <a href="#gal5">
-                    <img src="images/g5.jpg" alt=" " class="img-fluid" />
-                  </a>
-                </div>
-                <div class="port-desc text-center">
-                  <h6 class="main-title-w3pvt text-center">40-70mm</h6>
-                  <div class="input-container">
-                    <input type="number" id="tons-input" placeholder="请输入吨数" oninput="calculatePrice()" min="1" step="1">
-                    <span class="price" id="price-output">一吨3000tg</span>
-                    <button onclick="calculatePrice()">下单</button>
-                </div>
-                </div>
-              </div>
-            </li>
-            
-          </ul>
+          <ul class="demo row"></ul>
         </div>
         <!-- popup-->
         <div id="gal1" class="popup-effect animate">
@@ -275,12 +186,28 @@
 
     <!-- calculator -->
     <div class="calBox">
-        <h1 id="calH1">砂石运输费用计算器</h1>
-        <p>请输入砂石重量（吨）和运输距离（公里）：</p>
-        <input type="number" class="calInput" id="weight" placeholder="砂石重量（吨）" min="0" step="0.01">
-        <input type="number" class="calInput" id="distance" placeholder="运输距离（公里）" min="0" step="0.01">
-        <button class="calInput" id="calBtn" onclick="calculate()">计算运输费用</button>
-        <div id="result"></div>
+      <h1 id="calH1">砂石运输费用计算器</h1>
+      <p>请输入砂石重量（吨）和运输距离（公里）：</p>
+      <input
+        type="number"
+        class="calInput"
+        id="weight"
+        placeholder="砂石重量（吨）"
+        min="0"
+        step="1"
+      />
+      <input
+        type="number"
+        class="calInput"
+        id="distance"
+        placeholder="运输距离（公里）"
+        min="0"
+        step="1"
+      />
+      <button class="calInput" id="calBtn" onclick="calculate()">
+        计算运输费用
+      </button>
+      <div id="result"></div>
     </div>
     <!-- footer -->
     <footer class="footer py-md-5 pt-md-3 pb-sm-5">
@@ -417,24 +344,98 @@
     </a>
     <!-- //move top icon -->
     <script>
-        const pricePerTonKm = 36;
+      const pricePerTonKm = 36;
 
-        function calculate() {
-            const weight = parseFloat(document.getElementById("weight").value);
-            const distance = parseFloat(document.getElementById("distance").value);
-            if (isNaN(weight) || isNaN(distance)) {
-                alert("请输入有效的砂石重量和运输距离。");
-                return;
-            }
-            const cost = weight * distance * pricePerTonKm;
-            document.getElementById("result").innerHTML = "运输费用(价格起伏不超过40%)：" + cost.toFixed(2) + " ТГ";
+      function calculate() {
+        const weight = parseFloat(document.getElementById("weight").value);
+        const distance = parseFloat(document.getElementById("distance").value);
+        if (isNaN(weight) || isNaN(distance)) {
+          alert("请输入有效的砂石重量和运输距离。");
+          return;
         }
+        const cost = weight * distance * pricePerTonKm;
+        document.getElementById("result").innerHTML =
+          "运输费用(价格起伏不超过40%)：" + cost.toFixed(2) + " ТГ";
+      }
 
-        function calculatePrice() {
-            const tons = document.getElementById("tons-input").value;
-            const price = tons * 3000;
-            document.getElementById("price-output").textContent =price + " 元";
-        }
+      function calculatePrice(element) {
+      const tons = element.value;
+      const pricePerTon = parseFloat(element.dataset.price);
+      const price = tons * pricePerTon;
+      const priceOutput = element.parentElement.querySelector(".price-output");
+      priceOutput.textContent = price + " 元";
+    }
+      const products = [
+        {
+          class: "col-lg-4",
+          imgSrc: "images/g1.jpg",
+          imgAlt: " ",
+          galHref: "#gal1",
+          title: "0-5mm碎石",
+          price: "一吨3000tg",
+        },
+        {
+          class: "col-lg-4",
+          imgSrc: "images/g2.jpg",
+          imgAlt: " ",
+          galHref: "#gal2",
+          title: "5-10mm碎石",
+          price: "一吨3000tg",
+        },
+        {
+          class: "col-lg-4",
+          imgSrc: "images/g2.jpg",
+          imgAlt: " ",
+          galHref: "#gal3",
+          title: "10-20mm碎石",
+          price: "一吨2400tg",
+        },
+        {
+          class: "col-lg-4",
+          imgSrc: "images/g2.jpg",
+          imgAlt: " ",
+          galHref: "#gal4",
+          title: "20-40mm碎石",
+          price: "一吨2000tg",
+        },
+        {
+          class: "col-lg-4",
+          imgSrc: "images/g2.jpg",
+          imgAlt: " ",
+          galHref: "#gal5",
+          title: "40-70mm碎石",
+          price: "一吨1800tg",
+        },
+        // 添加更多产品对象
+      ];
+
+      function createListItem(product, index) {
+  const pricePerTon = parseFloat(product.price.match(/\d+/)[0]);
+        return `
+    <li class="${product.class}">
+      <div class="img-grid">
+        <div class="Portfolio-grid1">
+          <a href="${product.galHref}">
+            <img src="${product.imgSrc}" alt="${product.imgAlt}" class="img-fluid">
+          </a>
+        </div>
+        <div class="port-desc text-center">
+          <h6 class="main-title-w3pvt text-center">
+            ${product.title}
+          </h6>
+          <div class="input-container">
+            <input type="number" id="tons-input-${index}" data-price="${pricePerTon}" placeholder="请输入吨数" oninput="calculatePrice(this)" min="1" step="1">
+            <span class="price-output" id="price-output-${index}">${product.price}</span>
+            <button onclick="calculatePrice(document.getElementById('tons-input-${index}'))">下单</button>
+          </div>
+        </div>
+      </div>
+    </li>
+  `;
+      }
+
+      const listItems = products.map(createListItem).join("");
+      document.querySelector(".demo").innerHTML = listItems;
     </script>
   </body>
 </html>
