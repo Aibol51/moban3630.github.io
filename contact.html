@@ -114,7 +114,7 @@
           <div class="col-lg-7">
             <h5 class="cont-form">给我们留言</h5>
             <div class="contact-form-wthreelayouts">
-              <form action="#" method="post" class="register-wthree">
+              <form action="#" method="post" onsubmit="sendEmail(event)" class="register-wthree">
                 <div class="form-group">
                   <label> 姓名 </label>
                   <input
@@ -249,39 +249,80 @@
       <span class="fa fa-level-up" aria-hidden="true"></span>
     </a>
     <!-- //move top icon -->
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
     <script>
-      // 获取表单元素和用户输入的值
-      const form = document.querySelector(".register-wthree");
-      const nameInput = form.querySelector('input[name="name"]');
-      const mobileInput = form.querySelector('input[name="mobile"]');
-      const emailInput = form.querySelector('input[name="email"]');
-      const messageInput = form.querySelector('textarea[name="message"]');
+      function sendEmail(event) {
+        event.preventDefault();
 
-      // 在点击“发送”按钮时发送电子邮件
-      form.addEventListener("submit", (e) => {
-        e.preventDefault(); // 防止表单提交
+        const name = document.querySelector('input[name="name"]').value;
+        const mobile = document.querySelector('input[name="mobile"]').value;
+        const email = document.querySelector('input[name="email"]').value;
+        const message = document.querySelector(
+          'textarea[name="message"]'
+        ).value;
 
-        // 使用SMTPJS库发送电子邮件
-        Email.send({
-          SecureToken: "7e9c6e9c-8b88-493c-9583-0737db1c32b3",
-          To: "aidar.aidyn1@mail.ru",
-          From: "aidar.aidyn1@mail.ru",
-          Subject: "New Message from " + nameInput.value,
-          Body:
-            "Name: " +
-            nameInput.value +
-            "<br>" +
-            "Mobile: " +
-            mobileInput.value +
-            "<br>" +
-            "Email: " +
-            emailInput.value +
-            "<br>" +
-            "Message: " +
-            messageInput.value,
-        }).then((message) => alert("Your message was sent successfully!"));
-      });
+        const apiKey = "AIzaSyAjXzAqkpyGukXRCpnGrQDlWx8mHfeWD4c";
+        const clientId = "1074660797532-cpu4n99mtp2srsh0kgpucefgmfft5ebe.apps.googleusercontent.com";
+        const scope = "https://www.googleapis.com/auth/gmail.send";
+
+        gapi.load("client:auth2", () => {
+          gapi.client
+            .init({
+              apiKey,
+              clientId,
+              discoveryDocs: [
+                "https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest",
+              ],
+              scope,
+            })
+            .then(() => {
+              if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+                sendGmailMessage(name, mobile, email, message);
+              } else {
+                gapi.auth2
+                  .getAuthInstance()
+                  .signIn()
+                  .then(() => {
+                    sendGmailMessage(name, mobile, email, message);
+                  });
+              }
+            });
+        });
+      }
+
+      function sendGmailMessage(name, mobile, email, message) {
+        const emailBody = `
+    Name: ${name}
+    Mobile: ${mobile}
+    Email: ${email}
+    Message: ${message}
+  `;
+
+        const base64EncodedEmail = btoa(
+          `To: aidynaidar34@gmail.com\r\nSubject: Contact Form Submission\r\nContent-Type: text/plain; charset=utf-8\r\n\r\n${emailBody}`
+        )
+          .replace(/\+/g, "-")
+          .replace(/\//g, "_")
+          .replace(/=+$/, "");
+
+        gapi.client.gmail.users.messages
+          .send({
+            userId: "me",
+            resource: {
+              raw: base64EncodedEmail,
+            },
+          })
+          .then(
+            (response) => {
+              console.log("Email sent", response);
+              alert("Email sent successfully!");
+            },
+            (error) => {
+              console.error("Failed to send email", error);
+              alert("Failed to send email");
+            }
+          );
+      }
     </script>
   </body>
 </html>
