@@ -64,11 +64,11 @@
                 <li><a href="about.html">关于我们</a></li>
                 <li><a href="portfolio.html">案例展示</a></li>
                 <li><a href="order.html">人工碎石料</a></li>
-                <li><a href="contact.html">联系方式</a></li>
-                <!-- <li class="ml-xl-5 ml-lg-2 mt-lg-0 mt-sm-4 mt-3">
-                                <a href="login.html" class="reqe-button">Login</a>
-                                <a href="register.html" class="reqe-button">Register</a>
-                            </li> -->
+                <li><a href="contact.html">·联系方式</a></li>
+                <li class="ml-xl-5 ml-lg-2 mt-lg-0 mt-sm-4 mt-3">
+								<a href="login.html" class="reqe-button text-uppercase">登录</a>
+								<a href="register.html" class="reqe-button text-uppercase">注册</a>
+							</li>
               </ul>
             </nav>
           </div>
@@ -118,7 +118,6 @@
                 action="#"
                 method="post"
                 class="register-wthree"
-                id="email-form"
               >
                 <div class="form-group">
                   <label> 姓名 </label>
@@ -254,47 +253,6 @@
       <span class="fa fa-level-up" aria-hidden="true"></span>
     </a>
     <!-- //move top icon -->
-    <script>
-      const form = document.getElementById("email-form");
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const name = form.elements.name.value;
-        const mobile = form.elements.mobile.value;
-        const email = form.elements.email.value;
-        const message = form.elements.message.value;
-
-        const subject = `New email from ${name}`;
-        const text = `Mobile: ${mobile} \n\n Email: ${email} \n\n Message: ${message}`;
-
-        fetch("https://api.sparkpost.com/api/v1/transmissions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "16d664c2b304e567f38be5c9b6308f55b556a38e",
-          },
-          body: JSON.stringify({
-            options: {
-              sandbox: true,
-            },
-            content: {
-              from: "ggwp4236@gmail.com",
-              subject: subject,
-              text: text,
-            },
-            recipients: [{ address: "aidynaidar34@gmail.com" }],
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            alert("Email sent successfully!");
-          })
-          .catch((error) => {
-            console.error(error);
-            alert("Error sending email.");
-          });
-      });
-    </script>
+    
   </body>
 </html>
