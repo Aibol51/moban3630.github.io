@@ -1,185 +1,268 @@
 <!DOCTYPE html>
 <html lang="zxx">
+  <head>
+    <title>Register</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="" />
+    <script>
+      addEventListener(
+        "load",
+        function () {
+          setTimeout(hideURLbar, 0);
+        },
+        false
+      );
 
-<head>
-	<title>Register</title>
-	<!-- Meta tag Keywords -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="UTF-8" />
-	<meta name="keywords" content="" />
-	<script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+      function hideURLbar() {
+        window.scrollTo(0, 1);
+      }
+    </script>
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+   
+	
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
-	<!-- //Meta tag Keywords -->
+    <!-- //Meta tag Keywords -->
 
-	<!-- Custom-Files -->
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<!-- Bootstrap-Core-CSS -->
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-	<!-- Style-CSS -->
-	<link href="css/font-awesome.min.css" rel="stylesheet">
-	<!-- Font-Awesome-Icons-CSS -->
-	<!-- //Custom-Files -->
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //Custom-Files -->
 
-	<!-- Web-Fonts -->
-	<link href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-	 rel="stylesheet">
-	<link href="http://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-	<!-- //Web-Fonts -->
-</head>
+    <!-- Web-Fonts -->
+    <link
+      href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <link
+      href="http://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <!-- //Web-Fonts -->
+  </head>
 
-<body>
+  <body>
     <!-- header -->
     <header id="home">
-		<div class="container">
-		  <div
-			class="header d-lg-flex justify-content-between align-items-center py-sm-3 py-2 px-sm-2 px-1"
-		  >
-			<!-- logo -->
-			<div id="logo">
-			  <h1><a href="index.html">Stroy Kad</a></h1>
-			</div>
-			<!-- //logo -->
-			<!-- nav -->
-			<div class="nav_w3ls ml-lg-5">
-			  <nav>
-				<label for="drop" class="toggle">菜单</label>
-				<input type="checkbox" id="drop" />
-				<ul class="menu">
-				  <li><a href="index.html">首页</a></li>
-				  <li><a href="about.html">关于我们</a></li>
-				  <li><a href="portfolio.html">案例展示</a></li>
-				  <li><a href="order.html">人工碎石料</a></li>
-				  <li><a href="contact.html">·联系方式</a></li>
-				  <li class="ml-xl-5 ml-lg-2 mt-lg-0 mt-sm-4 mt-3">
-								  <a href="login.html" class="reqe-button text-uppercase">登录</a>
-								  <a href="register.html" class="reqe-button text-uppercase registerBtn">注册</a>
-							  </li>
-				</ul>
-			  </nav>
-			</div>
-			<!-- //nav -->
-		  </div>
-		</div>
-	  </header>
-	  <!-- //header -->
-	<!-- inner banner -->
-	<div class="inner-banner-w3ls d-flex flex-column justify-content-center align-items-center">
-	</div>
-	<!-- //inner banner -->
-	<!-- breadcrumbs -->
-	<nav aria-label="breadcrumb">
-		<ol class="breadcrumb d-flex justify-content-center">
-			<li class="breadcrumb-item">
-				<a href="index.html">首页</a>
-			</li>
-			<li class="breadcrumb-item active" aria-current="page">注册</li>
-		</ol>
-	</nav>
-	<!-- //breadcrumbs -->
+      <div class="container">
+        <div
+          class="header d-lg-flex justify-content-between align-items-center py-sm-3 py-2 px-sm-2 px-1"
+        >
+          <!-- logo -->
+          <div id="logo">
+            <h1><a href="index.html">Stroy Kad</a></h1>
+          </div>
+          <!-- //logo -->
+          <!-- nav -->
+          <div class="nav_w3ls ml-lg-5">
+            <nav>
+              <label for="drop" class="toggle">菜单</label>
+              <input type="checkbox" id="drop" />
+              <ul class="menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="portfolio.html">案例展示</a></li>
+                <li><a href="order.html">人工碎石料</a></li>
+                <li><a href="contact.html">·联系方式</a></li>
+                <li class="ml-xl-5 ml-lg-2 mt-lg-0 mt-sm-4 mt-3">
+                  <a href="login.html" class="reqe-button text-uppercase"
+                    >登录</a
+                  >
+                  <a
+                    href="register.html"
+                    class="reqe-button text-uppercase registerBtn"
+                    >注册</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <!-- //nav -->
+        </div>
+      </div>
+    </header>
+    <!-- //header -->
+    <!-- inner banner -->
+    <div
+      class="inner-banner-w3ls d-flex flex-column justify-content-center align-items-center"
+    ></div>
+    <!-- //inner banner -->
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb d-flex justify-content-center">
+        <li class="breadcrumb-item">
+          <a href="index.html">首页</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">注册</li>
+      </ol>
+    </nav>
+    <!-- //breadcrumbs -->
 
-	<!-- register  -->
-	<div class="modal-body align-w3">
-		<form action="#" method="post" class="p-sm-3">
-			<div class="form-group">
-				<label for="recipient-name" class="col-form-label">用户名</label>
-				<input type="text" class="form-control" placeholder="请输入用户名" name="Name" id="recipient-name" required="">
-			</div>
-			<div class="form-group">
-				<label for="recipient-email" class="col-form-label">邮箱</label>
-				<input type="email" class="form-control" placeholder="example@email.com" name="Email" id="recipient-email"
-				 required="">
-			</div>
-			<div class="form-group">
-				<label for="password1" class="col-form-label">密码</label>
-				<input type="password" class="form-control" placeholder="******" name="Password" id="password1" required="">
-			</div>
-			<div class="form-group">
-				<label for="password2" class="col-form-label">再次输入密码</label>
-				<input type="password" class="form-control" placeholder="******" name="Confirm Password" id="password2" required="">
-			</div>
-			<div class="sub-w3l">
-				<div class="sub-w3layouts_hub">
-					<input type="checkbox" id="brand2" value="">
-					<label for="brand2" class="mb-3 text-secondary">
-						<span></span>我接受条款和条件</label>
-				</div>
-			</div>
-			<div class="right-w3l">
-				<input type="submit" class="form-control bg-theme" value="注册">
-			</div>
-		</form>
-	</div>
-	<!-- //register -->
+    <!-- register  -->
+    <div class="modal-body align-w3">
+      <form action="#" method="post" class="p-sm-3">
+        <div class="form-group">
+          <label for="recipient-name" class="col-form-label">用户名</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="请输入用户名"
+            name="Name"
+            id="recipient-name"
+            required=""
+          />
+        </div>
+        <div class="form-group">
+          <label for="recipient-email" class="col-form-label">邮箱</label>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="example@email.com"
+            name="Email"
+            id="recipient-email"
+            required=""
+          />
+        </div>
+        <div class="form-group">
+          <label for="password1" class="col-form-label">密码</label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="******"
+            name="Password"
+            id="password1"
+            required=""
+          />
+        </div>
+        <div class="form-group">
+          <label for="password2" class="col-form-label">再次输入密码</label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="******"
+            name="Confirm Password"
+            id="password2"
+            required=""
+          />
+        </div>
+        <div class="sub-w3l">
+          <div class="sub-w3layouts_hub">
+            <input type="checkbox" id="brand2" value="" />
+            <label for="brand2" class="mb-3 text-secondary">
+              <span></span>我接受条款和条件</label
+            >
+          </div>
+        </div>
+        <div class="right-w3l">
+          <input type="submit" class="form-control bg-theme" value="注册" />
+        </div>
+      </form>
+    </div>
+    <!-- //register -->
 
     <!-- footer -->
     <footer class="footer py-md-5 pt-md-3 pb-sm-5">
-		<div class="container">
-		  <div class="row p-sm-4 px-3 py-3">
-			<div class="col-lg-4 footer-top mt-md-0 mt-sm-5 wrapStyle">
-			  <h2>
-				<a class="navbar-brand" href="index.html"> 货运 </a>
-			  </h2>
-			  <div class="fv3-contact mt-2">
-				<p>
-				  <a href="StroyKad001@gmail.com" style="text-decoration: none"
-					>StroyKad001@gmail.com</a
-				  >
-				</p>
-			  </div>
-			  <div class="fv3-contact my-2">
-				<p>+7 777 888 8888</p>
-			  </div>
-			  <div class="fv3-contact">
-				<p>Astana street</p>
-			  </div>
-			</div>
-			<div class="col-lg-2 col-md-6 mt-lg-0 mt-4">
-			  <div class="footerv2-w3ls">
-				<h3 class="mb-3 w3f_title">导航</h3>
-				<hr />
-				<ul class="list-w3pvtits">
-				  <li class="my-2">
-					<a href="index.html"> 首页 </a>
-				  </li>
-				  <li class="my-2">
-					<a href="about.html"> 关于我们 </a>
-				  </li>
-				  <li class="my-2">
-					<a href="portfolio.html"> 案例展示 </a>
-				  </li>
-				  <li class="mb-2">
-					<a href="order.html"> 人工碎石料 </a>
-				  </li>
-				  <li class="my-2">
-					<a href="contact.html"> 联系方式 </a>
-				  </li>
-				</ul>
-			  </div>
-			</div>
-		  </div>
-		</div>
-		<!-- //footer bottom -->
-	  </footer>
-	  <!-- //footer -->
-	<!-- move top icon -->
-	<a href="#home" class="move-top text-center">
-		<span class="fa fa-level-up" aria-hidden="true"></span>
-	</a>
-	<!-- //move top icon -->
-	<script>
-		let pathName = window.location.pathname
-		let registerBtn = document.querySelector(".registerBtn")
-		if(pathName == "/register.html"){
-			registerBtn.style.display = "none"
-		}
-	</script>
-</body>
-
+      <div class="container">
+        <div class="row p-sm-4 px-3 py-3">
+          <div class="col-lg-4 footer-top mt-md-0 mt-sm-5 wrapStyle">
+            <h2>
+              <a class="navbar-brand" href="index.html"> 货运 </a>
+            </h2>
+            <div class="fv3-contact mt-2">
+              <p>
+                <a href="StroyKad001@gmail.com" style="text-decoration: none"
+                  >StroyKad001@gmail.com</a
+                >
+              </p>
+            </div>
+            <div class="fv3-contact my-2">
+              <p>+7 777 888 8888</p>
+            </div>
+            <div class="fv3-contact">
+              <p>Astana street</p>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6 mt-lg-0 mt-4">
+            <div class="footerv2-w3ls">
+              <h3 class="mb-3 w3f_title">导航</h3>
+              <hr />
+              <ul class="list-w3pvtits">
+                <li class="my-2">
+                  <a href="index.html"> 首页 </a>
+                </li>
+                <li class="my-2">
+                  <a href="about.html"> 关于我们 </a>
+                </li>
+                <li class="my-2">
+                  <a href="portfolio.html"> 案例展示 </a>
+                </li>
+                <li class="mb-2">
+                  <a href="order.html"> 人工碎石料 </a>
+                </li>
+                <li class="my-2">
+                  <a href="contact.html"> 联系方式 </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //footer bottom -->
+    </footer>
+    <!-- //footer -->
+    <!-- move top icon -->
+    <a href="#home" class="move-top text-center">
+      <span class="fa fa-level-up" aria-hidden="true"></span>
+    </a>
+    <!-- //move top icon -->
+    <script>
+      let pathName = window.location.pathname;
+      let registerBtn = document.querySelector(".registerBtn");
+      if (pathName == "/register.html") {
+        registerBtn.style.display = "none";
+      }
+    </script>
+	 <script>
+		const SUPABASE_URL = 'https://vnswcmkocaomjscnsdsl.supabase.co'
+		const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZuc3djbWtvY2FvbWpzY25zZHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE1NDExNTMsImV4cCI6MTk5NzExNzE1M30.mWRgT9fQ-dULZH9X4f9UfYlLRTvw07eHI3u-Ch0fLjs'
+		// 初始化Supabase客户端
+		const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+	  
+		// 添加表单提交事件监听器
+		const form = document.querySelector("form");
+		form.addEventListener("submit", async (event) => {
+		  event.preventDefault(); // 防止表单自动提交
+	  
+		  // 从表单中获取输入值
+		  const name = form.querySelector('[name="Name"]').value;
+		  const email = form.querySelector('[name="Email"]').value;
+		  const password = form.querySelector('[name="Password"]').value;
+	  
+		  // 注册新用户
+		  const { error } = await _supabase.auth.signUp({
+			email,
+			password,
+			data: {
+			  name,
+			},
+		  });
+	  
+		  if (error) {
+			// 处理注册错误
+			console.error(error);
+		  } else {
+			// 注册成功，跳转到登录页面或显示成功消息
+			console.log(_supabase.auth.signUp());
+			alert("注册成功！");
+			window.location.href = "/login.html"; // 跳转到登录页面
+		  }
+		});
+	  </script>
+  </body>
 </html>
