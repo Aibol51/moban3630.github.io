@@ -1,136 +1,170 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>个人资料页面</title>
-	<style type="text/css">
-		body {
-			font-family: Arial, sans-serif;
-			background-color: #F5F5F5;
-			margin: 0;
-			padding: 0;
-		}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>查询订单页面</title>
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //Custom-Files -->
 
-		.container {
-			max-width: 800px;
-			margin: 0 auto;
-			padding: 20px;
-			background-color: #FFF;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-		}
+    <!-- Web-Fonts -->
+    <link
+      href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <link
+      href="http://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/1vSydkN/wnYymCp7Up1g1reDt7Lw6pG/c6OdDh"
+      crossorigin="anonymous"
+    />
+    <style>
+      .order-list {
+        list-style-type: none;
+        padding: 0;
+      }
 
-		h1, h2, h3 {
-			margin: 0;
-			color: #333;
-		}
+      .order-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
 
-		h1 {
-			font-size: 36px;
-			font-weight: bold;
-			margin-bottom: 10px;
-		}
+      .order-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 20px;
+      }
 
-		h2 {
-			font-size: 24px;
-			font-weight: bold;
-			margin-bottom: 10px;
-		}
+      .delete-button {
+        margin-left: auto;
+        padding: 5px 10px;
+        background-color: #f44336;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
 
-		h3 {
-			font-size: 18px;
-			font-weight: bold;
-			margin-bottom: 10px;
-		}
+      .delete-button:hover {
+        background-color: #da190b;
+      }
+    </style>
+  </head>
 
-		p {
-			margin: 0;
-			padding: 0;
-			line-height: 1.5;
-			color: #666;
-		}
-
-		.profile-picture {
-			width: 200px;
-			height: 200px;
-			background-color: #DDD;
-			margin-right: 20px;
-			border-radius: 50%;
-			float: left;
-			overflow: hidden;
-		}
-
-		.profile-picture img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
-
-		.contact-info {
-			margin-top: 20px;
-		}
-
-		.contact-info p {
-			margin-bottom: 5px;
-		}
-
-		.skills {
-			margin-top: 20px;
-		}
-
-		.skills ul {
-			margin: 0;
-			padding: 0;
-			list-style-type: none;
-			display: flex;
-			flex-wrap: wrap;
-		}
-
-		.skills li {
-			background-color: #EEE;
-			border-radius: 20px;
-			padding: 5px 10px;
-			margin-right: 10px;
-			margin-bottom: 10px;
-			font-size: 14px;
-			color: #666;
-		}
-
-		.skills li:hover {
-			background-color: #DDD;
-		}
-	</style>
-</head>
-<body>
-	<div class="container">
-		<div class="profile-picture">
-			<img src="your-profile-picture.jpg" alt="Your Profile Picture">
-		</div>
-		<div class="profile-info">
-			<h1>Your Name</h1>
-			<h2>Job Title</h2>
-			<div class="contact-info">
-				<p>Email: your-email@example.com</p>
-				<p>Phone: (123) 456-7890</p>
-				<p>Website: <a href="http://www.your-website.com">www.your-website.com</a></p>
-			</div>
-			<h3>Skills</h3>
-			<div class="skills">
-				<ul>
-					<li>Web Development</li>
-					<li>Graphic Design</li>
-					<li>Copywriting</li>
-					<li>Project Management</li>
-                    <li>Social Media Marketing</li>
-                    <li>Search Engine Optimization</li>
-                    <li>Video Editing</li>
-                    <li>Content Strategy</li>
-                    <li>Team Leadership</li>
-                </ul>
-            </div>
-            <h3>About Me</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id justo ac sapien iaculis convallis. Nulla vitae ex quam. Fusce id dolor aliquet, pretium nunc ac, maximus neque. Nullam aliquam nisl sit amet felis porta hendrerit. Donec lacinia lobortis nisl, quis euismod enim gravida vel. Phasellus malesuada nulla id velit accumsan, id varius lectus elementum. Nam nec massa volutpat, laoreet erat ut, feugiat tortor.</p>
-            <p>Donec ut augue auctor, efficitur mauris non, aliquam orci. Pellentesque fringilla quam ac augue maximus, vel facilisis nulla scelerisque. Nam ornare augue vitae elit pellentesque, et venenatis lorem bibendum. Sed malesuada tellus ut turpis blandit, eget malesuada nulla pharetra. Nunc ac augue quis velit vulputate imperdiet sit amet quis erat. Praesent venenatis, magna vel vestibulum scelerisque, magna arcu fringilla libero, quis bibendum dolor purus vitae lorem. In hac habitasse platea dictumst. Nulla facilisi.</p>
-            <p>Suspendisse mattis aliquam metus eu pulvinar. Sed lacinia diam sed nunc rutrum, non euismod augue semper. Nam feugiat, dui vel aliquam convallis, elit nibh facilisis dolor, in ullamcorper lectus massa id ex. Sed interdum lacinia ipsum, ac mattis risus tempus a. Aenean eget augue aliquam, blandit dolor quis, eleifend est. Nam euismod dolor nec felis auctor lobortis. Duis vitae dolor bibendum, tempor orci eu, aliquam velit. Fusce nec turpis nunc. Fusce ac malesuada sapien, sit amet eleifend neque. Cras vehicula elit mi, a pellentesque nisl maximus sed. Nullam non mollis libero.</p>
+  <body>
+    <!-- header -->
+    <header id="home">
+      <div class="container">
+        <div
+          class="header d-lg-flex justify-content-between align-items-center py-sm-3 py-2 px-sm-2 px-1"
+        >
+          <!-- logo -->
+          <div id="logo">
+            <h1><a href="index.html">Stroy Kad</a></h1>
+          </div>
+          <!-- //logo -->
+          <!-- nav -->
+          <div class="nav_w3ls ml-lg-5">
+            <nav>
+              <label for="drop" class="toggle">菜单</label>
+              <input type="checkbox" id="drop" />
+              <ul class="menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="portfolio.html">案例展示</a></li>
+                <li><a href="order.html">人工碎石料</a></li>
+                <li><a href="contact.html">·联系方式</a></li>
+              </ul>
+            </nav>
+          </div>
+          <!-- //nav -->
         </div>
+      </div>
+    </header>
+    <!-- //header -->
+    <div class="container">
+      <h2 class="text-center my-4">已下单的订单</h2>
+      <div class="row" id="order-list"></div>
     </div>
-</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.28.5/dist/umd/supabase.min.js"></script>
+    <script>
+      const SUPABASE_URL = "https://vnswcmkocaomjscnsdsl.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZuc3djbWtvY2FvbWpzY25zZHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE1NDExNTMsImV4cCI6MTk5NzExNzE1M30.mWRgT9fQ-dULZH9X4f9UfYlLRTvw07eHI3u-Ch0fLjs";
+
+      const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      function createOrderItem(order) {
+        return `
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div class="card">
+        <img src="${order.product_image}" class="card-img-top" alt="${order.product_title}">
+        <div class="card-body">
+          <h5 class="card-title">${order.product_title}</h5>
+          <p class="card-text">价格：${order.product_price} 元/吨</p>
+          <p class="card-text">吨数：${order.tons}</p>
+          <p class="card-text">总价：${order.total_price} 元</p>
+          <button class="btn btn-danger" onclick="deleteOrder('${order.id}')">删除订单</button>
+        </div>
+      </div>
+    </div>
+  `;
+      }
+
+      async function fetchOrders() {
+        const tokenBaseString = localStorage.getItem(
+          "sb-vnswcmkocaomjscnsdsl-auth-token"
+        );
+        const tokenBase = JSON.parse(tokenBaseString);
+        const userId = tokenBase.user.id;
+
+        const { data: orders, error } = await _supabase
+          .from("orders")
+          .select("*")
+          .eq("user_id", userId);
+
+        if (error) {
+          console.error("获取订单时出错:", error);
+          return;
+        }
+
+        const orderList = document.getElementById("order-list");
+        const orderItems = orders.map(createOrderItem).join("");
+        orderList.innerHTML = orderItems;
+      }
+
+      async function deleteOrder(orderId) {
+        const { error } = await _supabase
+          .from("orders")
+          .delete()
+          .eq("id", orderId);
+
+        if (error) {
+          console.error("删除订单时出错:", error);
+          return;
+        }
+
+        // 重新获取订单并更新列表
+        fetchOrders();
+      }
+
+      fetchOrders();
+    </script>
+  </body>
 </html>

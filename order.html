@@ -29,7 +29,7 @@
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <!-- Font-Awesome-Icons-CSS -->
     <!-- //Custom-Files -->
-
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- Web-Fonts -->
     <link
       href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
@@ -40,7 +40,6 @@
       rel="stylesheet"
     />
     <!-- //Web-Fonts -->
-
   </head>
 
   <body>
@@ -66,9 +65,22 @@
                 <li><a href="portfolio.html">案例展示</a></li>
                 <li><a href="order.html">人工碎石料</a></li>
                 <li><a href="contact.html">·联系方式</a></li>
-                <li id="user-links" class="ml-xl-5 ml-lg-2 mt-lg-0 mt-sm-4 mt-3">
-                  <a href="login.html" id="login-link" class="reqe-button text-uppercase">登录</a>
-                  <a href="register.html" id="register-link" class="reqe-button text-uppercase">注册</a>
+                <li
+                  id="user-links"
+                  class="ml-xl-5 ml-lg-2 mt-lg-0 mt-sm-4 mt-3"
+                >
+                  <a
+                    href="login.html"
+                    id="login-link"
+                    class="reqe-button text-uppercase"
+                    >登录</a
+                  >
+                  <a
+                    href="register.html"
+                    id="register-link"
+                    class="reqe-button text-uppercase"
+                    >注册</a
+                  >
                 </li>
               </ul>
             </nav>
@@ -148,7 +160,9 @@
             </h2>
             <div class="fv3-contact mt-2">
               <p>
-                <a href="StroyKad001@gmail.com" style="text-decoration: none;">StroyKad001@gmail.com</a>
+                <a href="StroyKad001@gmail.com" style="text-decoration: none"
+                  >StroyKad001@gmail.com</a
+                >
               </p>
             </div>
             <div class="fv3-contact my-2">
@@ -207,12 +221,68 @@
       }
 
       function calculatePrice(element) {
-      const tons = element.value;
-      const pricePerTon = parseFloat(element.dataset.price);
-      const price = tons * pricePerTon;
-      const priceOutput = element.parentElement.querySelector(".price-output");
-      priceOutput.textContent = price + " 元";
-    }
+        const tons = element.value;
+        const pricePerTon = parseFloat(element.dataset.price);
+        const price = tons * pricePerTon;
+        const priceOutput =
+          element.parentElement.querySelector(".price-output");
+        priceOutput.textContent = price + " 元";
+      }
+
+      async function clickOrder(element) {
+        const currentUser = JSON.parse(localStorage.getItem("users"));
+        if (!currentUser) {
+          alert("请先登录");
+          window.location.href = "/login.html";
+          return;
+        }
+
+        const productIndex = element.dataset.productIndex;
+        const product = products[productIndex];
+        const tons = parseFloat(
+          document.getElementById(`tons-input-${productIndex}`).value
+        );
+        if (isNaN(tons) || tons <= 0) {
+          alert("请输入有效的砂石吨数。");
+          return;
+        }
+        const pricePerTon = parseFloat(product.price.match(/\d+/)[0]);
+        const totalPrice = tons * pricePerTon;
+
+        const SUPABASE_URL = "https://vnswcmkocaomjscnsdsl.supabase.co";
+        const SUPABASE_ANON_KEY =
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZuc3djbWtvY2FvbWpzY25zZHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE1NDExNTMsImV4cCI6MTk5NzExNzE1M30.mWRgT9fQ-dULZH9X4f9UfYlLRTvw07eHI3u-Ch0fLjs";
+        // 初始化Supabase客户端
+        const _supabase = supabase.createClient(
+          SUPABASE_URL,
+          SUPABASE_ANON_KEY
+        );
+        const tokenBaseString = localStorage.getItem(
+          "sb-vnswcmkocaomjscnsdsl-auth-token"
+        );
+        const tokenBase = JSON.parse(tokenBaseString);
+        const userId = tokenBase.user.id;
+
+        await _supabase
+          .from("orders")
+          .insert({
+            user_id: userId,
+            product_title: product.title,
+            product_price: pricePerTon,
+            tons: tons,
+            total_price: totalPrice,
+            product_image: product.imgSrc,
+          })
+          .then(() => {
+            console.log("订单已保存到Supabase。");
+            alert("下单成功")
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("保存订单时出错，请重试。");
+          });
+      }
+
       const products = [
         {
           class: "col-lg-4",
@@ -253,7 +323,7 @@
       ];
 
       function createListItem(product, index) {
-  const pricePerTon = parseFloat(product.price.match(/\d+/)[0]);
+        const pricePerTon = parseFloat(product.price.match(/\d+/)[0]);
         return `
     <li class="${product.class}">
       <div class="img-grid">
@@ -269,7 +339,7 @@
           <div class="input-container">
             <input type="number" id="tons-input-${index}" data-price="${pricePerTon}" placeholder="请输入吨数" oninput="calculatePrice(this)" min="1" step="1">
             <span class="price-output" id="price-output-${index}">${product.price}</span>
-            <button onclick="calculatePrice(document.getElementById('tons-input-${index}'))">下单</button>
+            <button onclick="clickOrder(this)" data-product-index="${index}">下单</button>
           </div>
         </div>
       </div>

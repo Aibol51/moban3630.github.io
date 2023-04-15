@@ -239,12 +239,13 @@
           // 处理登录错误
           alert("账号或密码错误！");
           console.error(error);
+          console.error(_supabase.auth);
         } else {
-          console.log(_supabase.auth.signInWithPassword());
+          console.log(_supabase.auth);
 		  const users ={email:email};
 			localStorage.setItem("users", JSON.stringify(users));
           alert("登录成功！");
-
+			
           window.location.href = "/index.html"; // 跳转到登录页面
         }
       });
