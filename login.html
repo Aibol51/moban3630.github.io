@@ -40,6 +40,7 @@
       rel="stylesheet"
     />
     <!-- //Web-Fonts -->
+	
   </head>
 
   <body>
@@ -65,16 +66,10 @@
                 <li><a href="portfolio.html">案例展示</a></li>
                 <li><a href="order.html">人工碎石料</a></li>
                 <li><a href="contact.html">·联系方式</a></li>
-                <li class="ml-xl-5 ml-lg-2 mt-lg-0 mt-sm-4 mt-3">
-                  <a
-                    href="login.html"
-                    class="reqe-button text-uppercase loginBtn"
-                    >登录</a
-                  >
-                  <a href="register.html" class="reqe-button text-uppercase"
-                    >注册</a
-                  >
-                </li>
+				<li id="user-links" class="ml-xl-5 ml-lg-2 mt-lg-0 mt-sm-4 mt-3">
+					<a href="login.html" id="login-link" class="reqe-button text-uppercase loginBtn">登录</a>
+					<a href="register.html" id="register-link" class="reqe-button text-uppercase">注册</a>
+				</li>
               </ul>
             </nav>
           </div>
@@ -234,23 +229,26 @@
         const email = emailInput.value;
         const password = form.querySelector('[name="Password"]').value;
 
-        // 注册新用户
+        // 登录账号
         const { error } = await _supabase.auth.signInWithPassword({
           email,
           password,
         });
 
         if (error) {
-          // 处理注册错误
+          // 处理登录错误
           alert("账号或密码错误！");
           console.error(error);
         } else {
-          // 注册成功，跳转到登录页面或显示成功消息
           console.log(_supabase.auth.signInWithPassword());
+		  const users ={email:email};
+			localStorage.setItem("users", JSON.stringify(users));
           alert("登录成功！");
+
           window.location.href = "/index.html"; // 跳转到登录页面
         }
       });
     </script>
+	<script src="/main.js"></script>
   </body>
 </html>
