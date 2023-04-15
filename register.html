@@ -19,10 +19,7 @@
         window.scrollTo(0, 1);
       }
     </script>
-   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  
-   
-	
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <!-- //Meta tag Keywords -->
 
@@ -107,17 +104,6 @@
     <!-- register  -->
     <div class="modal-body align-w3">
       <form action="#" method="post" class="p-sm-3">
-        <div class="form-group">
-          <label for="recipient-name" class="col-form-label">用户名</label>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="请输入用户名"
-            name="Name"
-            id="recipient-name"
-            required=""
-          />
-        </div>
         <div class="form-group">
           <label for="recipient-email" class="col-form-label">邮箱</label>
           <input
@@ -228,41 +214,64 @@
         registerBtn.style.display = "none";
       }
     </script>
-	 <script>
-		const SUPABASE_URL = 'https://vnswcmkocaomjscnsdsl.supabase.co'
-		const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZuc3djbWtvY2FvbWpzY25zZHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE1NDExNTMsImV4cCI6MTk5NzExNzE1M30.mWRgT9fQ-dULZH9X4f9UfYlLRTvw07eHI3u-Ch0fLjs'
-		// 初始化Supabase客户端
-		const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-	  
-		// 添加表单提交事件监听器
-		const form = document.querySelector("form");
-		form.addEventListener("submit", async (event) => {
-		  event.preventDefault(); // 防止表单自动提交
-	  
-		  // 从表单中获取输入值
-		  const username = form.querySelector('[name="Name"]').value;
-		  const email = form.querySelector('[name="Email"]').value;
-		  const password = form.querySelector('[name="Password"]').value;
-	  
-		  // 注册新用户
-		  const { error } = await _supabase.auth.signUp({
-			email,
-			password,
-			data: {
-				username,
-			},
-		  });
-	  
-		  if (error) {
-			// 处理注册错误
-			console.error(error);
-		  } else {
-			// 注册成功，跳转到登录页面或显示成功消息
-			console.log(_supabase.auth.signUp());
-			alert("注册成功！");
-			window.location.href = "/login.html"; // 跳转到登录页面
-		  }
-		});
-	  </script>
+    <script>
+      const SUPABASE_URL = "https://vnswcmkocaomjscnsdsl.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZuc3djbWtvY2FvbWpzY25zZHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE1NDExNTMsImV4cCI6MTk5NzExNzE1M30.mWRgT9fQ-dULZH9X4f9UfYlLRTvw07eHI3u-Ch0fLjs";
+      // 初始化Supabase客户端
+      const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      const form = document.querySelector("form");
+      const emailInput = form.querySelector('[name="Email"]');
+      const passwordInput = form.querySelector('[name="Password"]');
+      const confirmPasswordInput = form.querySelector(
+        '[name="Confirm Password"]'
+      );
+      const checkboxInput = form.querySelector("#brand2");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault(); // 防止表单自动提交
+
+        // 验证邮箱格式是否正确
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value)) {
+          alert("请输入正确的邮箱地址！");
+          return;
+        }
+
+        // 验证两次输入的密码是否一致
+        if (passwordInput.value !== confirmPasswordInput.value) {
+          alert("两次输入的密码不一致！");
+          return;
+        }
+
+        // 验证是否勾选了同意条款和条件
+        if (!checkboxInput.checked) {
+          alert("请勾选同意条款和条件！");
+          return;
+        }
+
+        // 从表单中获取输入值
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
+        // 注册新用户
+        const { error } = await _supabase.auth.signUp({
+          email,
+          password,
+        });
+
+        if (error) {
+          // 处理注册错误
+          alert("注册失败！");
+          console.error(error);
+        } else {
+          // 注册成功，跳转到登录页面或显示成功消息
+          console.log(_supabase.auth.signUp());
+          alert("注册成功！");
+          window.location.href = "/login.html"; // 跳转到登录页面
+        }
+      });
+    </script>
   </body>
 </html>
