@@ -240,7 +240,7 @@
 		  event.preventDefault(); // 防止表单自动提交
 	  
 		  // 从表单中获取输入值
-		  const name = form.querySelector('[name="Name"]').value;
+		  const username = form.querySelector('[name="Name"]').value;
 		  const email = form.querySelector('[name="Email"]').value;
 		  const password = form.querySelector('[name="Password"]').value;
 	  
@@ -249,7 +249,7 @@
 			email,
 			password,
 			data: {
-			  name,
+				username,
 			},
 		  });
 	  
