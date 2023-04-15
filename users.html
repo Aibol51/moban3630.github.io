@@ -132,6 +132,11 @@
           "sb-vnswcmkocaomjscnsdsl-auth-token"
         );
         const tokenBase = JSON.parse(tokenBaseString);
+        if (!tokenBase) {
+          alert("请先登录");
+          window.location.href = "/login.html";
+          return;
+        }
         const userId = tokenBase.user.id;
 
         const { data: orders, error } = await _supabase
