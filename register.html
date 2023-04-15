@@ -268,8 +268,7 @@
         } else {
           // 注册成功，跳转到登录页面或显示成功消息
           console.log(_supabase.auth.signUp());
-          alert("注册成功！");
-          window.location.href = "/login.html"; // 跳转到登录页面
+          window.location.href = "/confirmEmail.html"; // 跳转到验证提示页面
         }
       });
     </script>
