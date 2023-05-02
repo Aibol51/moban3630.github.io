@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>查询订单页面</title>
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //Custom-Files -->
+
+    <!-- Web-Fonts -->
+    <link
+      href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <link
+      href="http://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <style>
+      .order-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .order-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .order-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 20px;
+      }
+
+      .delete-button {
+        margin-left: auto;
+        padding: 5px 10px;
+        background-color: #f44336;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .delete-button:hover {
+        background-color: #da190b;
+      }
+      .top_link {
+        display: flex;
+        align-items: center;
+        column-gap: 25px;
+      }
+      a {
+        color: #000000;
+      }
+      .row {
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- header -->
+    <header id="home">
+      <div class="container">
+        <div
+          class="header d-lg-flex justify-content-between align-items-center py-sm-3 py-2 px-sm-2 px-1"
+        >
+          <!-- logo -->
+          <div id="logo">
+            <h1><a href="index.html">Stroy Kad</a></h1>
+          </div>
+          <!-- //logo -->
+          <!-- nav -->
+          <div class="nav_w3ls ml-lg-5">
+            <nav>
+              <label for="drop" class="toggle">菜单</label>
+              <input type="checkbox" id="drop" />
+              <ul class="menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="portfolio.html">案例展示</a></li>
+                <li><a href="order.html">人工碎石料</a></li>
+                <li><a href="contact.html">·联系方式</a></li>
+                <button class="logOut" onclick="logOut()">退出登录</button>
+              </ul>
+            </nav>
+          </div>
+          <!-- //nav -->
+        </div>
+      </div>
+    </header>
+    <!-- //header -->
+    <div class="container">
+      <div class="top_link">
+        <p class="text-center my-4">个人资料</p>
+        <p>/</p>
+        <a href="users.html" class="my_order_page">已下单的订单</a>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-7">
+          <h5 class="cont-form">填写个人资料</h5>
+          <div class="contact-form-wthreelayouts">
+            <form action="#" method="post" class="register-wthree">
+              <div class="form-group">
+                <label> 姓名 </label>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Johnson"
+                  name="name"
+                  required=""
+                />
+              </div>
+              <div class="form-group">
+                <label>手机号</label>
+                <input
+                  class="form-control"
+                  type="tel"
+                  placeholder="+7 xxx xxxx"
+                  name="mobile"
+                  pattern="^\+7\d{10}$"
+                  required=""
+                  title="请输入有效的哈萨克斯坦手机号（格式：+7xxxxxxxxxx）"
+                />
+              </div>
+              <div class="form-group mb-0">
+                <button
+                  type="submit"
+                  id="sendBtn"
+                  class="btn btn-w3layouts btn-block bg-theme text-wh w-100 font-weight-bold text-uppercase"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.addEventListener("DOMContentLoaded",async  () => {
+        const authToken = JSON.parse(
+      localStorage.getItem("sb-vnswcmkocaomjscnsdsl-auth-token")
+    );
+    const userId = authToken.user.id;
+
+    const { data: existingUserInfo, error } = await _supabase
+      .from("user_info")
+      .select("*")
+      .eq("user_id", userId);
+
+    if (error) {
+      console.error("Error:", error.message);
+      return;
+    }
+
+    const nameInput = document.querySelector("input[name='name']");
+    const mobileInput = document.querySelector("input[name='mobile']");
+
+    if (existingUserInfo.length > 0) {
+      const userInfo = existingUserInfo[0];
+      if (userInfo.name) {
+        nameInput.placeholder = userInfo.name;
+      }
+
+      if (userInfo.phone) {
+        mobileInput.placeholder = userInfo.phone;
+      }
+    }
+  });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.28.5/dist/umd/supabase.min.js"></script>
+    <script>
+      const SUPABASE_URL = "https://vnswcmkocaomjscnsdsl.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZuc3djbWtvY2FvbWpzY25zZHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE1NDExNTMsImV4cCI6MTk5NzExNzE1M30.mWRgT9fQ-dULZH9X4f9UfYlLRTvw07eHI3u-Ch0fLjs";
+
+      const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      document
+        .querySelector(".register-wthree")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const name = event.target.elements.name.value;
+          const mobile = event.target.elements.mobile.value;
+          const authToken = JSON.parse(
+            localStorage.getItem("sb-vnswcmkocaomjscnsdsl-auth-token")
+          );
+          const userId = authToken.user.id;
+
+          // 将用户名和手机号码保存到 localStorage
+          localStorage.setItem("user_name", name);
+          localStorage.setItem("user_mobile", mobile);
+
+          try {
+            // 查询 Supabase 数据库中是否已经存在该用户的信息
+            const { data: existingUserInfo, error: fetchError } =
+              await _supabase
+                .from("user_info")
+                .select("*")
+                .eq("user_id", userId);
+
+            let data, error;
+
+            if (existingUserInfo.length > 0) {
+              // 用户信息已存在，执行更新操作
+              ({ data, error } = await _supabase
+                .from("user_info")
+                .update({ name: name, phone: mobile })
+                .eq("user_id", userId));
+            } else {
+              // 用户信息不存在，执行插入操作
+              ({ data, error } = await _supabase
+                .from("user_info")
+                .insert([{ user_id: userId, name: name, phone: mobile }]));
+            }
+
+            if (error) {
+              throw error;
+            }
+
+            // 清空表单字段
+            event.target.elements.name.value = "";
+            event.target.elements.mobile.value = "";
+
+            // 显示成功消息或进行其他操作
+            alert("用户信息已成功保存！");
+            location.reload()
+          } catch (error) {
+            console.error("Error:", error.message);
+            // 显示错误消息或进行其他操作
+            alert("保存用户信息时出错，请重试！");
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -57,6 +57,17 @@
       .delete-button:hover {
         background-color: #da190b;
       }
+      .top_link {
+        display: flex;
+        align-items: center;
+        column-gap: 25px;
+      }
+      a {
+        color: #000000;
+      }
+      .row {
+        justify-content: center;
+      }
     </style>
   </head>
 
@@ -83,6 +94,7 @@
                 <li><a href="portfolio.html">案例展示</a></li>
                 <li><a href="order.html">人工碎石料</a></li>
                 <li><a href="contact.html">·联系方式</a></li>
+                <button class="logOut" onclick="logOut()">退出登录</button>
               </ul>
             </nav>
           </div>
@@ -91,7 +103,13 @@
       </div>
     </header>
     <!-- //header -->
+
     <div class="container">
+      <div class="top_link">
+        <a href="my_address.html" class="my_order_page">个人资料</a>
+        <p>/</p>
+        <p class="text-center my-4">已下单的订单</p>
+      </div>
       <h2 class="text-center my-4">已下单的订单</h2>
       <div class="row" id="order-list"></div>
     </div>

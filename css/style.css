@@ -5,7 +5,9 @@ body {
     background: #FFF;
     font-family: 'Lato', sans-serif;
 }
-
+.my_order_page:hover {
+    color: #000000;
+  }
 body button,
 .btn,
 body a {
@@ -244,7 +246,11 @@ nav ul ul ul li {
 li>a:only-child:after {
     content: '';
 }
-
+.logOut {
+    border-radius: 4px;
+    border: 0;
+    background-color: #f5ff35;
+  }
 /* Media Queries
 --------------------------------------------- */
 @media(max-width: 1280px) {
