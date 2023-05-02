@@ -65,7 +65,7 @@
       a {
         color: #000000;
       }
-      .row {
+      #center_pos {
         justify-content: center;
       }
     </style>
@@ -109,7 +109,7 @@
         <p>/</p>
         <a href="users.html" class="my_order_page">已下单的订单</a>
       </div>
-      <div class="row mt-4">
+      <div class="row mt-4" id="center_pos">
         <div class="col-lg-7">
           <h5 class="cont-form">填写个人资料</h5>
           <div class="contact-form-wthreelayouts">
@@ -151,36 +151,36 @@
       </div>
     </div>
     <script>
-      window.addEventListener("DOMContentLoaded",async  () => {
+      window.addEventListener("DOMContentLoaded", async () => {
         const authToken = JSON.parse(
-      localStorage.getItem("sb-vnswcmkocaomjscnsdsl-auth-token")
-    );
-    const userId = authToken.user.id;
+          localStorage.getItem("sb-vnswcmkocaomjscnsdsl-auth-token")
+        );
+        const userId = authToken.user.id;
 
-    const { data: existingUserInfo, error } = await _supabase
-      .from("user_info")
-      .select("*")
-      .eq("user_id", userId);
+        const { data: existingUserInfo, error } = await _supabase
+          .from("user_info")
+          .select("*")
+          .eq("user_id", userId);
 
-    if (error) {
-      console.error("Error:", error.message);
-      return;
-    }
+        if (error) {
+          console.error("Error:", error.message);
+          return;
+        }
 
-    const nameInput = document.querySelector("input[name='name']");
-    const mobileInput = document.querySelector("input[name='mobile']");
+        const nameInput = document.querySelector("input[name='name']");
+        const mobileInput = document.querySelector("input[name='mobile']");
 
-    if (existingUserInfo.length > 0) {
-      const userInfo = existingUserInfo[0];
-      if (userInfo.name) {
-        nameInput.placeholder = userInfo.name;
-      }
+        if (existingUserInfo.length > 0) {
+          const userInfo = existingUserInfo[0];
+          if (userInfo.name) {
+            nameInput.placeholder = userInfo.name;
+          }
 
-      if (userInfo.phone) {
-        mobileInput.placeholder = userInfo.phone;
-      }
-    }
-  });
+          if (userInfo.phone) {
+            mobileInput.placeholder = userInfo.phone;
+          }
+        }
+      });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.28.5/dist/umd/supabase.min.js"></script>
     <script>
@@ -239,7 +239,7 @@
 
             // 显示成功消息或进行其他操作
             alert("用户信息已成功保存！");
-            location.reload()
+            location.reload();
           } catch (error) {
             console.error("Error:", error.message);
             // 显示错误消息或进行其他操作
