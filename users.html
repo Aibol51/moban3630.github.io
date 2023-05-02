@@ -65,7 +65,6 @@
       a {
         color: #000000;
       }
-
     </style>
   </head>
 
@@ -180,6 +179,11 @@
       }
 
       fetchOrders();
+      // 退出登录
+      function logOut() {
+        localStorage.clear();
+        location.reload();
+      }
     </script>
   </body>
 </html>

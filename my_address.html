@@ -152,6 +152,15 @@
     </div>
     <script>
       window.addEventListener("DOMContentLoaded", async () => {
+        const tokenBaseString = localStorage.getItem(
+          "sb-vnswcmkocaomjscnsdsl-auth-token"
+        );
+        const tokenBase = JSON.parse(tokenBaseString);
+        if (!tokenBase) {
+          alert("请先登录");
+          window.location.href = "/login.html";
+          return;
+        }
         const authToken = JSON.parse(
           localStorage.getItem("sb-vnswcmkocaomjscnsdsl-auth-token")
         );
@@ -189,7 +198,6 @@
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZuc3djbWtvY2FvbWpzY25zZHNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODE1NDExNTMsImV4cCI6MTk5NzExNzE1M30.mWRgT9fQ-dULZH9X4f9UfYlLRTvw07eHI3u-Ch0fLjs";
 
       const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
       document
         .querySelector(".register-wthree")
         .addEventListener("submit", async (event) => {
@@ -246,6 +254,11 @@
             alert("保存用户信息时出错，请重试！");
           }
         });
+      // 退出登录
+      function logOut() {
+        localStorage.clear();
+        location.reload();
+      }
     </script>
   </body>
 </html>

@@ -65,8 +65,3 @@ if (
   }
 }
 
-// 退出登录
-function logOut() {
-  localStorage.clear();
-  location.reload();
-}
